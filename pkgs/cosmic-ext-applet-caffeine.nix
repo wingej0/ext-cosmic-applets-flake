@@ -2,6 +2,7 @@
   lib,
   rustPlatform,
   fetchFromGitHub,
+  libcosmicAppHook,
   pkg-config,
   libxkbcommon,
 }:

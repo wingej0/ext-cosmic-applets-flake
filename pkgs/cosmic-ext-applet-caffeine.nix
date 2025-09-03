@@ -18,7 +18,7 @@ rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-xTJwVus28p7rNbfYRANo1UYkXDvwOc4ozuu+kPM3GDI=";
 
-  nativeBuildInputs = [pkg-config];
+  nativeBuildInputs = [pkg-config libcosmicAppHook];
   buildInputs = [libxkbcommon];
 
   meta = {

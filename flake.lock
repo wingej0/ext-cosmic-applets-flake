@@ -1,0 +1,163 @@
+{
+  "nodes": {
+    "cosmic-ext-applet-caffeine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750939778,
+        "narHash": "sha256-WEm2PVq7HrqtqGtIvEecpzJT35K+KMRf+IWrwE/mHQc=",
+        "owner": "tropicbliss",
+        "repo": "cosmic-ext-applet-caffeine",
+        "rev": "dffe4da8b8d63185267ff262776aae35e8dae426",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tropicbliss",
+        "repo": "cosmic-ext-applet-caffeine",
+        "type": "github"
+      }
+    },
+    "cosmic-ext-applet-clipboard-manager": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754400182,
+        "narHash": "sha256-NLu4C/UA+4+fCahQx6IcA76ORMkHoUoZZThjWDSS2Hg=",
+        "owner": "cosmic-utils",
+        "repo": "clipboard-manager",
+        "rev": "3b4d392f8bae47d5582e308dac0296eeb7365c6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cosmic-utils",
+        "repo": "clipboard-manager",
+        "type": "github"
+      }
+    },
+    "cosmic-ext-applet-emoji-selector": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749757341,
+        "narHash": "sha256-BDI5tV6Gzbwtm6Vex46CYDpTqMupssOJUZU0YNGyIqM=",
+        "owner": "bGVia3VjaGVu",
+        "repo": "cosmic-ext-applet-emoji-selector",
+        "rev": "f7333f23b235121b2c85787f82d94bf8804c6b50",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bGVia3VjaGVu",
+        "repo": "cosmic-ext-applet-emoji-selector",
+        "type": "github"
+      }
+    },
+    "cosmic-ext-applet-weather": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755966135,
+        "narHash": "sha256-VHCgMw4nWTKAbanEnMS/xCUzEW3NeWGmVkBqU2bJP/c=",
+        "owner": "cosmic-utils",
+        "repo": "cosmic-ext-applet-weather",
+        "rev": "f613c9dd156e84290765c34ca98ff8ede3b530fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cosmic-utils",
+        "repo": "cosmic-ext-applet-weather",
+        "type": "github"
+      }
+    },
+    "cosmic-ext-bg-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753331757,
+        "narHash": "sha256-iqOA0n0LOpzVugyijKkyQVLoRyF9J8QpbeWCSaH4kIk=",
+        "owner": "wash2",
+        "repo": "cosmic_ext_bg_theme",
+        "rev": "3c338ef06e0e332a874e52ac0cc10c2a8d29a4f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wash2",
+        "repo": "cosmic_ext_bg_theme",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "minimon-applet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756683340,
+        "narHash": "sha256-FbbJPYotRHn85BV7p7wRSlAsPW1lSWrPCbEAgHq01QI=",
+        "owner": "cosmic-utils",
+        "repo": "minimon-applet",
+        "rev": "18371c94479e6598d5567a956285f398e76a1eb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cosmic-utils",
+        "repo": "minimon-applet",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1756787288,
+        "narHash": "sha256-rw/PHa1cqiePdBxhF66V7R+WAP8WekQ0mCDG4CFqT8Y=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d0fc30899600b9b3466ddb260fd83deb486c32f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "cosmic-ext-applet-caffeine": "cosmic-ext-applet-caffeine",
+        "cosmic-ext-applet-clipboard-manager": "cosmic-ext-applet-clipboard-manager",
+        "cosmic-ext-applet-emoji-selector": "cosmic-ext-applet-emoji-selector",
+        "cosmic-ext-applet-weather": "cosmic-ext-applet-weather",
+        "cosmic-ext-bg-theme": "cosmic-ext-bg-theme",
+        "flake-utils": "flake-utils",
+        "minimon-applet": "minimon-applet",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,42 +1,34 @@
-{ lib, stdenv, rustPlatform, pkg-config, src, just, libcosmicAppHook, nix-update-script }:
-
-rustPlatform.buildRustPackage rec {
+{
+  lib,
+  rustPlatform,
+  fetchFromGitHub,
+  pkg-config,
+  libxkbcommon,
+}:
+rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-caffeine";
-  version = "0.1.0";
+  version = "unstable-2025-03-10";
 
-  inherit src;
-
-  cargoDeps = rustPlatform.fetchCargoVendor {
-    inherit src;
-    hash = "sha256-Ynqb71OnHULvouvulBKQBo41j61aQpLoHnCJwJihTrY=";
+  src = fetchFromGitHub {
+    owner = "tropicbliss";
+    repo = "cosmic-ext-applet-caffeine";
+    rev = "dd52bc2974372bd2c4da49935aab0c108012580a";
+    hash = "sha256-klaqJkigfzWokVVC2UWefE6AVvcrOi1Izvpc5FUxMGo=";
   };
 
-  nativeBuildInputs = [
-    pkg-config
-    just
-    libcosmicAppHook
-  ];
+  cargoHash = "sha256-xTJwVus28p7rNbfYRANo1UYkXDvwOc4ozuu+kPM3GDI=";
 
-  # This package uses a `justfile` for its build process instead of raw cargo commands.
-  # These flags replicate the logic from the working example.
-  dontUseJustBuild = true;
-  dontUseJustCheck = true;
+  nativeBuildInputs = [pkg-config];
+  buildInputs = [libxkbcommon];
 
-  justFlags = [
-    "--set" "prefix" (placeholder "out")
-    "--set" "bin-src" "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-caffeine"
-  ];
-
-  passthru.updateScript = nix-update-script { };
-
-  meta = with lib; {
-    description = "Caffeine Applet for the COSMIC desktop";
-    homepage = "https://github.com/tropicbliss/cosmic-ext-applet-caffeine";
-    # The repository's LICENSE file specifies GPLv3.
-    license = licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ ];
-    platforms = platforms.linux;
+  meta = {
+    description = "Caffeine Applet for the COSMIC™ desktop";
+    homepage = "https://github.com/tropicbliss/cosmic-ext-applet-caffeine/tree/main";
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [
+      wingej0
+      gurjaka
+    ];
     mainProgram = "cosmic-ext-applet-caffeine";
   };
 }
-

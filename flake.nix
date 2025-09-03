@@ -1,5 +1,5 @@
 {
-  description = "Flake template by Gurjaka";
+  description = "A nix flake for installing a number of 3rd party applets for the Cosmic Desktop";
 
   outputs = {
     self,

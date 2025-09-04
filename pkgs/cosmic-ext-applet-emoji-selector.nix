@@ -1,5 +1,5 @@
 {
- lib,
+  lib,
   fetchFromGitHub,
   rustPlatform,
   libcosmicAppHook,
@@ -8,18 +8,20 @@
   util-linux,
   nix-update-script,
 }:
-rustPlatform.buildRustPackage rec {
+
+rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-emoji-selector";
-  version = "0.1.5";
+  version = "0.1.5-unstable-2025-01-27";
 
   src = fetchFromGitHub {
-    owner = "bGVia3VjaGVu";
+    owner = "leb-kuchen";
     repo = "cosmic-ext-applet-emoji-selector";
-    rev = "v${version}";
-    hash = "sha256-tUfrurThxN++cZiCyVHr65qRne9ZXzWtMuPb0lqOijE=";
+    rev = "1b2eb23ba4d337482ed10b0595be3b603020cad2";
+    hash = "sha256-G5Al0YRf0a4WuvYB7kDWCPPl+f/GBrN6M2SMVgO+U94=";
   };
 
-  cargoHash = "sha256-vI8pIOo8A9Ebyati4c0CyGxuf4YQKEaSdG28CQ1/w3w=";
+  # useFetchCargoVendor = true;
+  cargoHash = "sha256-0V0zKGsNzUXlAjzf4dm4khnzhqNsXvxaLLlIB+JvF9s=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -50,13 +52,17 @@ rustPlatform.buildRustPackage rec {
   passthru.updateScript = nix-update-script { };
 
   meta = {
-    description = "Emoji Selector for COSMIC™\u{fe0f} DE";
-    homepage = "https://github.com/bGVia3VjaGVu/cosmic-ext-applet-emoji-selector";
-    license = lib.licenses.mpl20;
+    homepage = "https://github.com/leb-kuchen/cosmic-ext-applet-emoji-selector";
+    description = "Emoji selector applet for the COSMIC Desktop Environment";
+    license = with lib.licenses; [
+      mpl20
+      mit
+    ];
     maintainers = with lib.maintainers; [
       wingej0
       gurjaka
     ];
+    platforms = lib.platforms.linux;
     mainProgram = "cosmic-ext-applet-emoji-selector";
   };
 }

@@ -1,20 +1,12 @@
 {
-  lib,
-  rustPlatform,
+ lib,
   fetchFromGitHub,
-  pkg-config,
-  wrapGAppsHook,
-  atk,
-  cairo,
-  gdk-pixbuf,
-  glib,
-  gtk3,
-  libxkbcommon,
-  pango,
-  vulkan-loader,
+  rustPlatform,
+  libcosmicAppHook,
+  just,
   stdenv,
-  darwin,
-  wayland,
+  util-linux,
+  nix-update-script,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-emoji-selector";
@@ -30,33 +22,32 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-vI8pIOo8A9Ebyati4c0CyGxuf4YQKEaSdG28CQ1/w3w=";
 
   nativeBuildInputs = [
-    pkg-config
-    wrapGAppsHook
+    libcosmicAppHook
+    just
+    util-linux
   ];
 
-  buildInputs =
-    [
-      atk
-      cairo
-      gdk-pixbuf
-      glib
-      gtk3
-      libxkbcommon
-      pango
-      vulkan-loader
-    ]
-    ++ lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.AppKit
-      darwin.apple_sdk.frameworks.CoreFoundation
-      darwin.apple_sdk.frameworks.CoreGraphics
-      darwin.apple_sdk.frameworks.CoreServices
-      darwin.apple_sdk.frameworks.Foundation
-      darwin.apple_sdk.frameworks.Metal
-      darwin.apple_sdk.frameworks.QuartzCore
-    ]
-    ++ lib.optionals stdenv.isLinux [
-      wayland
-    ];
+  dontUseJustBuild = true;
+  dontUseJustCheck = true;
+
+  justFlags = [
+    "--set"
+    "prefix"
+    (placeholder "out")
+  ];
+
+  installTargets = [
+    "install"
+    "install-schema"
+  ];
+
+  postPatch = ''
+    substituteInPlace justfile \
+      --replace-fail './target/release' './target/${stdenv.hostPlatform.rust.cargoShortTarget}/release' \
+      --replace-fail '~/.config/cosmic' "$out/share/cosmic"
+  '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Emoji Selector for COSMIC™\u{fe0f} DE";

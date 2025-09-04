@@ -1,14 +1,11 @@
 {
-  lib,
-  rustPlatform,
   fetchFromGitHub,
-  pkg-config,
-  libxkbcommon,
-  sqlite,
-  vulkan-loader,
+  lib,
+  libcosmicAppHook,
+  rustPlatform,
+  just,
   stdenv,
-  darwin,
-  wayland,
+  nix-update-script,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
@@ -24,28 +21,30 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-mFr2Zb48yKiv60UHBu9ZdbmR4X52Rp6HT8wGyxPpyYI=";
 
   nativeBuildInputs = [
-    pkg-config
+    libcosmicAppHook
+    just
   ];
 
-  buildInputs =
-    [
-      libxkbcommon
-      sqlite
-      vulkan-loader
-    ]
-    ++ lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.AppKit
-      darwin.apple_sdk.frameworks.CoreFoundation
-      darwin.apple_sdk.frameworks.CoreGraphics
-      darwin.apple_sdk.frameworks.CoreServices
-      darwin.apple_sdk.frameworks.Foundation
-      darwin.apple_sdk.frameworks.Metal
-      darwin.apple_sdk.frameworks.QuartzCore
-      darwin.apple_sdk.frameworks.SystemConfiguration
-    ]
-    ++ lib.optionals stdenv.isLinux [
-      wayland
-    ];
+  dontUseJustBuild = true;
+  dontUseJustCheck = true;
+
+  justFlags = [
+    "--set"
+    "prefix"
+    (placeholder "out")
+    "--set"
+    "env-dst"
+    "${placeholder "out"}/etc/profile.d/cosmic-ext-applet-clipboard-manager.sh"
+    "--set"
+    "bin-src"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-clipboard-manager"
+  ];
+
+  preCheck = ''
+    export XDG_RUNTIME_DIR="$TMP"
+  '';
+
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "Clipboard manager for COSMIC";

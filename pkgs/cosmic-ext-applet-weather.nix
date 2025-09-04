@@ -1,9 +1,11 @@
 {
   lib,
-  rustPlatform,
   fetchFromGitHub,
-  pkg-config,
-  libxkbcommon,
+  libcosmicAppHook,
+  rustPlatform,
+  just,
+  stdenv,
+  nix-update-script,
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-weather";
@@ -18,8 +20,24 @@ rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-CS4P1DHzTmkZdANw6UQsB0kjKTeaf3cAQ/2EiPHSg7g=";
 
-  nativeBuildInputs = [pkg-config];
-  buildInputs = [libxkbcommon];
+  nativeBuildInputs = [
+    libcosmicAppHook
+    just
+  ];
+
+  dontUseJustBuild = true;
+  dontUseJustCheck = true;
+
+  justFlags = [
+    "--set"
+    "prefix"
+    (placeholder "out")
+    "--set"
+    "bin-src"
+    "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-weather"
+  ];
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Simple weather info applet for cosmic";

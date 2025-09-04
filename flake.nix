@@ -16,7 +16,7 @@
 
     flake_attributes = forAllSystems (pkgs: rec {
       callPackage = name: pkgs.callPackage ./pkgs/${name}.nix {};
-
+    
       applets = {
         cosmic-ext-applet-clipboard-manager = callPackage "cosmic-ext-applet-clipboard-manager";
         cosmic-ext-applet-caffeine = callPackage "cosmic-ext-applet-caffeine";

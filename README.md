@@ -1,5 +1,5 @@
 # Cosmic Applets for NixOS   
-A collection of Cosmic Applets packaged for NixOS   
+A collection of Cosmic Applets packaged for NixOS with a big thank you to [Gurjaka](https://github.com/Gurjaka), without whom the project wouldn't have been possible.   
    
 ## Applets   
 The following applets for the Cosmic Desktop are packaged here:   

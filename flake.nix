@@ -1,6 +1,10 @@
 {
   description = "A nix flake for installing a number of 3rd party applets for the Cosmic Desktop";
 
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -43,7 +47,4 @@
     );
   };
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  };
 }

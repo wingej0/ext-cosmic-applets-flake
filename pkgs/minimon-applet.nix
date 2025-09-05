@@ -14,11 +14,11 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "minimon-applet";
-    rev = "main"; # Use latest commit since tags seem problematic
-    hash = "sha256-FbbJPYotRHn85BV7p7wRSlAsPW1lSWrPCbEAgHq01QI="; # Reset this to get the correct hash for main branch
+    rev = "main"; 
+    hash = "sha256-FbbJPYotRHn85BV7p7wRSlAsPW1lSWrPCbEAgHq01QI="; 
   };
 
-  cargoHash = "sha256-d9vFKYtAoWFuYK2BcGx5X0PNWG2ICJFSowacB/qG1nY="; # Will need to be updated with actual hash
+  cargoHash = "sha256-d9vFKYtAoWFuYK2BcGx5X0PNWG2ICJFSowacB/qG1nY="; 
 
   nativeBuildInputs = [
     libcosmicAppHook

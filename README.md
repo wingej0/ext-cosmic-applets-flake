@@ -25,7 +25,30 @@ Or, you can install packages separately by defining which package you want to in
 ```nix
 inputs.cosmic-applets-collection.packages."${system}".minimon-applet
 ```
-Use the names from the applets section above to install individual packages.   
+Use the names from the applets section above to install individual packages.  
+
+## BG Theme Service
+If you want to use the bg_theme extension as a service that will automatically when the wallpaper changes, create the following module:
+```nix
+{ config, lib, pkgs, inputs, ... }:
+let
+    cosmic-bg-theme = inputs.cosmic-applets-collection.packages.${pkgs.system}.cosmic-ext-bg-theme;
+in
+{
+    systemd.user.services.cosmic-ext-bg-theme = {
+        description = "COSMIC Background Theme Extension";
+        documentation = [ "man:cosmic-ext-bg-theme(1)" ];
+        partOf = [ "graphical-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        
+        serviceConfig = {
+            Type = "simple";
+            ExecStart = "${cosmic-bg-theme}/bin/cosmic-ext-bg-theme";
+            Restart = "on-failure";
+        };
+    };
+}
+```
    
 ## Contributing   
 We love contributions!  Feel free to fork the repository, create a branch, and submit a pull request.   

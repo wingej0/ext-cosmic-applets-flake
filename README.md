@@ -28,7 +28,7 @@ inputs.cosmic-applets-collection.packages."${system}".minimon-applet
 Use the names from the applets section above to install individual packages.  
 
 ## BG Theme Service
-If you want to use the bg_theme extension as a service that will automatically when the wallpaper changes, create the following module:
+If you want to use the bg_theme extension as a service that will automatically update the theme when the wallpaper changes, create the following module:
 ```nix
 { config, lib, pkgs, inputs, ... }:
 let

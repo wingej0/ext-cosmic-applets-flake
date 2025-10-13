@@ -15,10 +15,10 @@ rustPlatform.buildRustPackage {
     owner = "cosmic-utils";
     repo = "minimon-applet";
     rev = "main"; 
-    hash = "sha256-FbbJPYotRHn85BV7p7wRSlAsPW1lSWrPCbEAgHq01QI="; 
+    hash = "sha256-3bXlzszo1cVVh1wODsz5wHGUynFfCRjNDXgdmHW5aB0="; 
   };
 
-  cargoHash = "sha256-d9vFKYtAoWFuYK2BcGx5X0PNWG2ICJFSowacB/qG1nY="; 
+  cargoHash = "sha256-yIqgqsNOlhNhOa0eiJwZT+0plX2bs0HV3RFc0rcSIAg="; 
 
   nativeBuildInputs = [
     libcosmicAppHook

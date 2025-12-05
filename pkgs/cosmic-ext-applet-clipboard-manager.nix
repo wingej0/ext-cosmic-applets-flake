@@ -7,6 +7,8 @@
   just,
   stdenv,
   nix-update-script,
+  wl-clipboard,
+  makeWrapper,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
@@ -25,6 +27,11 @@ rustPlatform.buildRustPackage rec {
     git
     libcosmicAppHook
     just
+    makeWrapper
+  ];
+
+  buildInputs = [
+    wl-clipboard
   ];
 
   dontUseJustBuild = true;
@@ -47,6 +54,11 @@ rustPlatform.buildRustPackage rec {
     substituteInPlace justfile \
       --replace-fail 'export CLIPBOARD_MANAGER_COMMIT := `git rev-parse --short HEAD`' \
                      'export CLIPBOARD_MANAGER_COMMIT := "${src.rev}"'
+  '';
+
+  postInstall = ''
+    wrapProgram $out/bin/cosmic-ext-applet-clipboard-manager \
+      --prefix PATH : ${lib.makeBinPath [ wl-clipboard ]}
   '';
 
   passthru.updateScript = nix-update-script {};

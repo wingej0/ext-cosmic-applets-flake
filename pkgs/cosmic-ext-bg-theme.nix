@@ -10,16 +10,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-bg-theme";
-  version = "unstable-2025-07-24";
+  version = "unstable-2025-09-15";
 
   src = fetchFromGitHub {
     owner = "wash2";
     repo = "cosmic_ext_bg_theme";
-    rev = "3c338ef06e0e332a874e52ac0cc10c2a8d29a4f6";
-    hash = "sha256-iqOA0n0LOpzVugyijKkyQVLoRyF9J8QpbeWCSaH4kIk=";
+    rev = "884c3501458a1952e4c009fcc2fadf4e19014a2a";
+    hash = "sha256-0QqMW8oW35U0/27bu4sOLju0C5DyvOV2i6vFbl2o6dA=";
   };
 
-  cargoHash = "sha256-6R9JY55fEKGrByCJzR3Ifan03MsVYusMonMPZzCXqHc=";
+  cargoHash = "sha256-hRzk3gXKQCBqmlT5mXI34wRdPQLm8/A+Stw8ee4usAg=";
 
   nativeBuildInputs = [
     pkg-config

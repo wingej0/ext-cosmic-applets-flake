@@ -4,42 +4,38 @@
   fetchFromGitHub,
   pkg-config,
   libxkbcommon,
-  stdenv,
-  darwin,
   wayland,
+  nix-update-script,
 }:
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "cosmic-ext-bg-theme";
-  version = "unstable-2026-02-03";
+  version = "unstable-2026-07-13";
 
   src = fetchFromGitHub {
     owner = "wash2";
     repo = "cosmic_ext_bg_theme";
-    rev = "8856cab26546338a65fac7b8f7d579299fe4a479";
-    hash = "sha256-3gfb2dmlT2aUrzSgNIjngOarsHVhBSE9Gw1ZzBnD+rg=";
+    rev = "49f484b27bf2bcf66668d9401ec5a95727823281";
+    hash = "sha256-56SNMPtLlAAYx6vlblyUNdVBOprs9nH+sKhPFx5IH1E=";
   };
 
-  cargoHash = "sha256-DNx3eISK5Wb3eKcJMjCJQwdjwAzmn12OJkM0uGsRNLw=";
+  cargoHash = "sha256-TF2z+lGkAI0axMAJODVq6okB18uf1jPOVOnXP/rfeAU=";
 
   nativeBuildInputs = [
     pkg-config
   ];
 
-  buildInputs =
-    [
-      libxkbcommon
-    ]
-    ++ lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.AppKit
-      darwin.apple_sdk.frameworks.CoreFoundation
-      darwin.apple_sdk.frameworks.CoreServices
-    ]
-    ++ lib.optionals stdenv.isLinux [
-      wayland
-    ];
+  buildInputs = [
+    libxkbcommon
+    wayland
+  ];
+
+  # Upstream tests add a second full dependency build for little coverage
+  doCheck = false;
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
-    description = "";
+    description = "Automatically sets the COSMIC theme based on the current wallpaper";
     homepage = "https://github.com/wash2/cosmic_ext_bg_theme";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [

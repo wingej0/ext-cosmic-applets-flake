@@ -49,10 +49,13 @@ rustPlatform.buildRustPackage {
       --replace-fail '~/.config/cosmic' "$out/share/cosmic"
   '';
 
+  # Upstream tests add a second full dependency build for little coverage
+  doCheck = false;
+
   passthru.updateScript = nix-update-script { };
 
   meta = {
-    homepage = "https://github.com/leb-kuchen/cosmic-ext-applet-emoji-selector";
+    homepage = "https://github.com/bGVia3VjaGVu/cosmic-ext-applet-emoji-selector";
     description = "Emoji selector applet for the COSMIC Desktop Environment";
     license = with lib.licenses; [
       mpl20

@@ -6,6 +6,7 @@ The following applets for the Cosmic Desktop are packaged here:
 - [cosmic-ext-applet-caffeine](https://github.com/tropicbliss/cosmic-ext-applet-caffeine)   
 - [cosmic-ext-applet-clipboard-manager](https://github.com/cosmic-utils/clipboard-manager)   
 - [cosmic-ext-applet-emoji-selector](https://github.com/bGVia3VjaGVu/cosmic-ext-applet-emoji-selector)   
+- [cosmic-ext-applet-logomenu](https://github.com/cosmic-utils/cosmic-ext-applet-logomenu)   
 - [cosmic-ext-applet-weather](https://github.com/cosmic-utils/cosmic-ext-applet-weather)   
 - [cosmic\_ext\_bg\_theme](https://github.com/wash2/cosmic_ext_bg_theme)   
 - [minimon-applet](https://github.com/cosmic-utils/minimon-applet)   

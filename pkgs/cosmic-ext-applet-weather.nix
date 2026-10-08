@@ -9,16 +9,16 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "cosmic-ext-applet-weather";
-  version = "unstable-2026-01-17";
+  version = "unstable-2026-10-07";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "cosmic-ext-applet-weather";
-    rev = "142666f73c702036438408758ea86ec22d63611b";
-    hash = "sha256-K4flguR6pknhFCpwHQ+4OtSAtPBjUag1g/uUnCNM3Pw=";
+    rev = "9c295eec5850e39f5c652db7a1e412eb723750c3";
+    hash = "sha256-27EAI2G6ekl8jG/iQShSqm97d2EbobWEB6A/jp83DAs=";
   };
 
-  cargoHash = "sha256-LcTUIhAWitLFz23TasfSJt6tOAAAJDiHxfTcxBX2/Bg=";
+  cargoHash = "sha256-QbEnqAY9fiIkdTCurXTegnXCt+n9O+3Rix8XjHKRxTQ=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -36,6 +36,9 @@ rustPlatform.buildRustPackage {
     "bin-src"
     "target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/cosmic-ext-applet-weather"
   ];
+
+  # Upstream tests add a second full dependency build for little coverage
+  doCheck = false;
 
   passthru.updateScript = nix-update-script { };
 

@@ -7,18 +7,18 @@
   stdenv,
   nix-update-script,
 }:
-rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage rec {
   pname = "cosmic-ext-applet-clipboard-manager";
-  version = "unstable-2026-01-29";
+  version = "unstable-2026-09-24";
 
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "clipboard-manager";
-    rev = "7cc5868882718a2994418f94b1330f20eae5c8e5";
-    hash = "sha256-aciPTGN4yN4xmOB/9/MF+nhiF3JGYF7h4fsFHzL7Fws=";
+    rev = "1914df800d0626316161031453047dbc4015e8ad";
+    hash = "sha256-164MiyRI2hrkiAl+rhGJMLlqcldXBqnrjPK8jsN9v3g=";
   };
 
-  cargoHash = "sha256-DmxrlYhxC1gh5ZoPwYqJcAPu70gzivFaZQ7hVMwz3aY=";
+  cargoHash = "sha256-ABo4fAtFCaIyNukOUZqHpBhR0fANkb/h7lz755LyRpA=";
 
   nativeBuildInputs = [
     libcosmicAppHook
@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage {
 
   postPatch = ''
     substituteInPlace justfile \
-      --replace-fail '`git rev-parse --short HEAD`' '"7cc5868"'
+      --replace-fail '`git rev-parse --short HEAD`' '"${builtins.substring 0 7 src.rev}"'
   '';
 
   dontUseJustBuild = true;
@@ -52,6 +52,9 @@ rustPlatform.buildRustPackage {
     export XDG_RUNTIME_DIR="$TMP"
   '';
 
+
+  # Upstream tests add a second full dependency build for little coverage
+  doCheck = false;
 
   passthru.updateScript = nix-update-script {};
 

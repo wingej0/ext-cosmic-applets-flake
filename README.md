@@ -10,6 +10,7 @@ The following applets for the Cosmic Desktop are packaged here:
 - [cosmic-ext-applet-weather](https://github.com/cosmic-utils/cosmic-ext-applet-weather)   
 - [cosmic\_ext\_bg\_theme](https://github.com/wash2/cosmic_ext_bg_theme)   
 - [minimon-applet](https://github.com/cosmic-utils/minimon-applet)   
+- [signpost](https://github.com/lkbddh/Signpost)   
    
 For usage instructions, please visit the projects' github pages.  Applet usage is beyond the scope of this project.   
    

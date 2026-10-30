@@ -27,6 +27,7 @@
         cosmic-ext-applet-weather = callPackage "cosmic-ext-applet-weather";
         cosmic-ext-bg-theme = callPackage "cosmic-ext-bg-theme";
         cosmic-ext-applet-logomenu = callPackage "cosmic-ext-applet-logomenu";
+        signpost = callPackage "signpost";
       };
     });
   in {
